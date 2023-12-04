@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:34 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/11/29 20:52:47 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/04 00:47:32 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(const char *s);
+void	ft_bzero(void *s, size_t n);
 #endif

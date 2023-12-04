@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:41 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/11/29 20:42:52 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/04 01:07:24 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_strlen(const char *s)
 	return (length);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -58,9 +58,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (result == NULL)
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
+	result = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
+	if (result == NULL)
+		return (free(s1), NULL);
 	while (s1[i] != '\0')
 	{
 		result[i] = s1[i];
@@ -73,7 +75,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	result[i] = '\0';
-	free((char *)s1);
+	free(s1);
 	return (result);
 }
 
@@ -92,5 +94,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)(s + i));
 	return (NULL);
 }
-
-
