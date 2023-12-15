@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:41 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/04 01:07:24 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:18:16 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	total_size;
 	void	*ptr;
 
-	if (count > 2147483647 || size > 2147483647)
-		return (NULL);
 	total_size = count * size;
 	ptr = malloc(total_size);
 	if (ptr == NULL)
@@ -45,8 +43,8 @@ int	ft_strlen(const char *s)
 	int	length;
 
 	length = 0;
-	while (s[length] != '\0')
-		length ++;
+	while (s && s[length] != '\0')
+		length++;
 	return (length);
 }
 
@@ -74,9 +72,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 		i++;
 		j++;
 	}
-	result[i] = '\0';
-	free(s1);
-	return (result);
+	return (free(s1), result);
 }
 
 char	*ft_strchr(const char *s, int c)
