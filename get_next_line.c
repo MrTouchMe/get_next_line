@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:20 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/12 17:14:51 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:21:10 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_read(int fd, char *buffer)
 		tmp[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, tmp);
 		if (!buffer)
-			break ;
+			return (free(tmp), NULL);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -102,6 +102,8 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	line = ft_line(buffer);
+	if (!line)
+		return (free(buffer), buffer = NULL, NULL);
 	buffer = ft_new(buffer);
 	return (line);
 }
