@@ -6,7 +6,8 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:33:28 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/16 20:33:30 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/16 23:54:02 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line_bonus.h"
