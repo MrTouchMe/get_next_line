@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:33:12 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/19 18:54:52 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:19:16 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# endif
+# ifndef FD_SETSIZE
+#  define FD_SETSIZE 1024
 # endif
 # include <stdlib.h>
 # include <unistd.h>
