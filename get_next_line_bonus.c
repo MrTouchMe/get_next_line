@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:32:43 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/22 17:19:18 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:43:32 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ char	*ft_line(char *buffer)
 	return (line);
 }
 
+void	ft_free2d(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
+}
+
 char	*ft_read(int fd, char *buffer)
 {
 	char	*tmp;
@@ -68,7 +78,7 @@ char	*ft_read(int fd, char *buffer)
 	bytes_read = 1;
 	tmp = ft_calloc((BUFFER_SIZE + 1), 1);
 	if (!tmp)
-		return (free(buffer), NULL);
+		return (ft_free2d(&buffer), NULL);
 	while (bytes_read)
 	{
 		bytes_read = read(fd, tmp, BUFFER_SIZE);
@@ -88,22 +98,27 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buffer[FD_SETSIZE];
+	int			i;
 
+	i = -1;
 	if (fd < 0 || fd >= FD_SETSIZE || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!buffer[fd])
-		buffer[fd] = ft_calloc(1, 1);
+		return (ft_free2d(buffer), NULL);
+	while (++i < FD_SETSIZE)
+	{
+		buffer[i] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		if (!buffer[i])
+			return (NULL);
+	}
 	if (!buffer[fd])
 		return (NULL);
 	if (read(fd, NULL, 0) < 0)
-		return (ft_bzero(buffer[fd], ft_strlen(buffer[fd])), free(buffer[fd]),
-			buffer[fd] = NULL, NULL);
+		return (ft_bzero(buffer[fd], BUFFER_SIZE + 1), NULL);
 	buffer[fd] = ft_read(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
 	line = ft_line(buffer[fd]);
 	if (!line)
-		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+		return (ft_bzero(buffer[fd], BUFFER_SIZE + 1), NULL);
 	buffer[fd] = ft_new(buffer[fd]);
-	return (line);
+	return (free(buffer), line);
 }
