@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:20 by dgiurgev          #+#    #+#             */
-/*   Updated: 2024/01/03 15:43:39 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:46:20 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,5 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (free(buffer), buffer = NULL, NULL);
 	buffer = ft_new(buffer);
-	return (free(buffer), line);
+	return (line);
 }

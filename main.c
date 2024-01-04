@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:06:57 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/11/29 20:51:54 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:28:43 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 int	main(void)
 {
 	int		fd;
-	fd = open("test.txt", O_RDONLY);
 	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
 	line = get_next_line(fd);
-	while(line && line[0] != '\0')
+	while (line && line[0] != '\0')
 	{
 		printf("%s", line);
 		line = get_next_line(fd);

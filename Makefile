@@ -6,7 +6,7 @@
 #    By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 16:54:44 by dgiurgev          #+#    #+#              #
-#    Updated: 2023/12/16 21:27:53 by dgiurgev         ###   ########.fr        #
+#    Updated: 2023/12/19 19:08:57 by dgiurgev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=42
 
 NAME = get_next_line.a
+
+NAME_BONUS = get_next_line_bonus.a
 
 SOURCES = get_next_line.c get_next_line_utils.c
 
@@ -31,10 +33,10 @@ $(NAME):	$(OBJECTS)
 # test: $(NAME)
 # 	$(CC) $(CFLAGS) $(NAME) main.c -o GNL_test
 
-bonus: $(BONUS_NAME)
+bonus: $(NAME_BONUS)
 
-$(BONUS_NAME):	$(BONUS_OBJECTS)
-			ar rcs $(BONUS_NAME) $(BONUS_OBJECTS)
+$(NAME_BONUS):	$(BONUS_OBJECTS)
+			ar rcs $(NAME_BONUS) $(BONUS_OBJECTS)
 
 clean:
 		rm -f $(OBJECTS) $(BONUS_OBJECTS)
