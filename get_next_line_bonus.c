@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:32:43 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/22 17:19:18 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:49:52 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_new(char *buffer)
 	int		j;
 
 	i = 0;
-	j = 0;
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
@@ -65,10 +64,10 @@ char	*ft_read(int fd, char *buffer)
 	char	*tmp;
 	int		bytes_read;
 
-	bytes_read = 1;
 	tmp = ft_calloc((BUFFER_SIZE + 1), 1);
 	if (!tmp)
 		return (free(buffer), NULL);
+	bytes_read = 1;
 	while (bytes_read)
 	{
 		bytes_read = read(fd, tmp, BUFFER_SIZE);
@@ -96,7 +95,7 @@ char	*get_next_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	if (read(fd, NULL, 0) < 0)
-		return (ft_bzero(buffer[fd], ft_strlen(buffer[fd])), free(buffer[fd]),
+		return (free(buffer[fd]),
 			buffer[fd] = NULL, NULL);
 	buffer[fd] = ft_read(fd, buffer[fd]);
 	if (!buffer[fd])

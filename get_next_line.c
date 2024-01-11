@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:54:20 by dgiurgev          #+#    #+#             */
-/*   Updated: 2023/12/15 23:46:20 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:18:25 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_new(char *buffer)
 	int		j;
 
 	i = 0;
-	j = 0;
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
@@ -96,7 +95,7 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	if (read(fd, NULL, 0) < 0)
-		return (ft_bzero(buffer, ft_strlen(buffer)), free(buffer),
+		return (free(buffer),
 			buffer = NULL, NULL);
 	buffer = ft_read(fd, buffer);
 	if (!buffer)
