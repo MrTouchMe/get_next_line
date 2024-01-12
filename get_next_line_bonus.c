@@ -6,7 +6,7 @@
 /*   By: dgiurgev <dgiurgev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:32:43 by dgiurgev          #+#    #+#             */
-/*   Updated: 2024/01/10 14:49:52 by dgiurgev         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:25:35 by dgiurgev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,23 @@ char	*ft_line(char *buffer)
 
 char	*ft_read(int fd, char *buffer)
 {
-	char	*tmp;
+	char	tmp[BUFFER_SIZE + 1];
 	int		bytes_read;
 
-	tmp = ft_calloc((BUFFER_SIZE + 1), 1);
-	if (!tmp)
-		return (free(buffer), NULL);
 	bytes_read = 1;
 	while (bytes_read)
 	{
 		bytes_read = read(fd, tmp, BUFFER_SIZE);
-		if (bytes_read == -1)
-			return (free(tmp), NULL);
+		if (bytes_read < 0)
+			return (NULL);
 		tmp[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, tmp);
 		if (!buffer)
-			return (free(tmp), NULL);
-		if (ft_strchr(buffer, '\n'))
+			return (NULL);
+		if (ft_strchr(buffer, '\n') || bytes_read < BUFFER_SIZE)
 			break ;
 	}
-	return (free(tmp), buffer);
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
@@ -95,8 +92,7 @@ char	*get_next_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	if (read(fd, NULL, 0) < 0)
-		return (free(buffer[fd]),
-			buffer[fd] = NULL, NULL);
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
 	buffer[fd] = ft_read(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
